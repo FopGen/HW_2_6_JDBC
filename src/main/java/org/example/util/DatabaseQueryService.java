@@ -2,10 +2,10 @@ package org.example.util;
 
 
 import org.example.Database;
-import org.example.model.LongestCountProject;
-import org.example.model.MaxProjectCountClient;
-import org.example.model.MaxSalaryCountWorker;
-import org.example.model.YoungestEldestCountWorkers;
+import org.example.model.LongestProject;
+import org.example.model.MaxProjectClient;
+import org.example.model.MaxSalaryWorker;
+import org.example.model.YoungestEldestWorkers;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -17,17 +17,17 @@ public class DatabaseQueryService {
     private DatabaseQueryService(){
     }
 
-    public static List<LongestCountProject> findLongestProject() throws SQLException {
+    public static List<LongestProject> findLongestProject() throws SQLException {
 
-        String queryString = new ParsingQueryString().getListQuery("find_longest_project.sql");
-        List<LongestCountProject> listLongestCountProject = new ArrayList<>();
+        String queryString = new ParsingQueryString().getStringQuery("find_longest_project.sql");
+        List<LongestProject> listLongestCountProject = new ArrayList<>();
 
         Connection connection = Database.getConnection();
         Statement statement = connection.createStatement();
         ResultSet result = statement.executeQuery(queryString);
 
         while(result.next()){
-            LongestCountProject longestCountProject = new LongestCountProject();
+            LongestProject longestCountProject = new LongestProject();
             longestCountProject.setId(result.getInt(1));
             longestCountProject.setMonth_count(result.getInt(2));
             listLongestCountProject.add(longestCountProject);
@@ -37,17 +37,17 @@ public class DatabaseQueryService {
 
     }
 
-    public static List<MaxProjectCountClient> findMaxProjectClient() throws SQLException {
+    public static List<MaxProjectClient> findMaxProjectClient() throws SQLException {
 
-        String queryString = new ParsingQueryString().getListQuery("find_max_projects_client.sql");
-        List<MaxProjectCountClient> listMaxProjectCountClient = new ArrayList<>();
+        String queryString = new ParsingQueryString().getStringQuery("find_max_projects_client.sql");
+        List<MaxProjectClient> listMaxProjectCountClient = new ArrayList<>();
 
         Connection connection = Database.getConnection();
         Statement statement = connection.createStatement();
         ResultSet result = statement.executeQuery(queryString);
 
         while(result.next()){
-            MaxProjectCountClient maxProjectCountClient = new MaxProjectCountClient();
+            MaxProjectClient maxProjectCountClient = new MaxProjectClient();
             maxProjectCountClient.setName(result.getString(1));
             maxProjectCountClient.setProjectCount(result.getInt(2));
             listMaxProjectCountClient.add(maxProjectCountClient);
@@ -57,17 +57,17 @@ public class DatabaseQueryService {
 
     }
 
-    public static List<MaxSalaryCountWorker> findMaxSalaryWorker() throws SQLException {
+    public static List<MaxSalaryWorker> findMaxSalaryWorker() throws SQLException {
 
-        String queryString = new ParsingQueryString().getListQuery("find_max_salary_worker.sql");
-        List<MaxSalaryCountWorker> listMaxSalaryCountWorker = new ArrayList<>();
+        String queryString = new ParsingQueryString().getStringQuery("find_max_salary_worker.sql");
+        List<MaxSalaryWorker> listMaxSalaryCountWorker = new ArrayList<>();
 
         Connection connection = Database.getConnection();
         Statement statement = connection.createStatement();
         ResultSet result = statement.executeQuery(queryString);
 
         while(result.next()){
-            MaxSalaryCountWorker maxSalaryCountWorker = new MaxSalaryCountWorker();
+            MaxSalaryWorker maxSalaryCountWorker = new MaxSalaryWorker();
             maxSalaryCountWorker.setName(result.getString(1));
             maxSalaryCountWorker.setSalary(result.getInt(2));
             listMaxSalaryCountWorker.add(maxSalaryCountWorker);
@@ -76,17 +76,17 @@ public class DatabaseQueryService {
         return listMaxSalaryCountWorker;
 
     }
-    public static List<YoungestEldestCountWorkers> findYoungestEldestCountWorkers() throws SQLException {
+    public static List<YoungestEldestWorkers> findYoungestEldestCountWorkers() throws SQLException {
 
-        String queryString = new ParsingQueryString().getListQuery("find_youngest_eldest_workers.sql");
-        List<YoungestEldestCountWorkers> listYoungestEldestCountWorkers = new ArrayList<>();
+        String queryString = new ParsingQueryString().getStringQuery("find_youngest_eldest_workers.sql");
+        List<YoungestEldestWorkers> listYoungestEldestCountWorkers = new ArrayList<>();
 
         Connection connection = Database.getConnection();
         Statement statement = connection.createStatement();
         ResultSet result = statement.executeQuery(queryString);
 
         while(result.next()){
-            YoungestEldestCountWorkers youngestEldestCountWorkers = new YoungestEldestCountWorkers();
+            YoungestEldestWorkers youngestEldestCountWorkers = new YoungestEldestWorkers();
             youngestEldestCountWorkers.setType(result.getString(1));
             youngestEldestCountWorkers.setName(result.getString(2));
             youngestEldestCountWorkers.setBirthday(result.getDate(3));

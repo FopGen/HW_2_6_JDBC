@@ -17,5 +17,8 @@ public class DatabasePopulateService {
         for (String str:arrayList){
             statement.execute(str);
         }
+
+        connection.close();
+        statement.close();
     }
 }

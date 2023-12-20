@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class ParsingQuery {
 
     public ArrayList getListQuery(String fileName){
-        String filePathInit = "./src/main/resources/sql/init_db.sql"+fileName;
+        String filePathInit = "./src/main/resources/sql/"+fileName;
         ArrayList<String> arrayFromInitDb = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePathInit))){
         while(br.ready()){

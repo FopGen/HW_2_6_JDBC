@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class ParsingQueryString {
 
-    public String getListQuery(String fileName){
+    public String getStringQuery(String fileName){
 
         String fileSql = "./src/main/resources/sql/" + fileName;
         String result;

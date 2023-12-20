@@ -7,7 +7,6 @@ import java.util.Objects;
 
 public class Database {
     private static final String DB_URL = "jdbc:postgresql://localhost:5432/123";
-//    private static final String DB_URL = "jdbc:postgresql://localhost:5432/megasoft";
     private static final String USERNAME = "postgres";
     private static final String PASSWORD = "1";
     private static Connection connection;

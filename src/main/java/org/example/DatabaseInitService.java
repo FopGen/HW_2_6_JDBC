@@ -21,5 +21,7 @@ public class DatabaseInitService {
             statement.execute(str);
         }
 
+        connection.close();
+        statement.close();
     }
 }
