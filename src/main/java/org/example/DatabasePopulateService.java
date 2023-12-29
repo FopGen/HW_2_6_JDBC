@@ -1,24 +1,37 @@
 package org.example;
 
-import org.example.util.ParsingQuery;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
+import org.example.util.ProcessindData;
+
+import java.sql.*;
+import java.util.*;
 
 public class DatabasePopulateService {
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException{
 
-        ArrayList<String> arrayList = new ParsingQuery().getListQuery("populate_db.sql");
+ //       Connection connection = Database.getConnection();
 
-        Connection connection = Database.getConnection();
-        Statement statement = connection.createStatement();
+        HashMap<Integer, String> listOfClient = DataSource.getListOfClient();
+        String queryForClient = "INSERT INTO client (id, name) VALUES (?,?)";
 
-        for (String str:arrayList){
-            statement.execute(str);
-        }
+        ProcessindData.processingListOfClient(listOfClient, queryForClient);
 
-        connection.close();
-        statement.close();
+
+        List <String> listOfWorker = DataSource.getlistOfWorker();
+        String queryForWorker = "INSERT INTO worker (id, name, birthday, level, salary) VALUES (?,?, ?, ?::competence,?)";
+
+        ProcessindData.processingListOfWorker(listOfWorker, queryForWorker);
+
+
+        List <String> listOfProjects = DataSource.getListOfProjects();
+        String queryForProject = "INSERT INTO project (id, client_id, start_date, finish_date) VALUES (?, ?, ?, ?)";
+
+        ProcessindData.processingListOfProject(listOfProjects, queryForProject);
+
+
+        List <String> listOfProjectsWorker = DataSource.getListOfProjectsWorker();
+        String queryForProjectWorker = "INSERT INTO project_worker (project_id, worker_id) VALUES (?, ?)";
+
+        ProcessindData.processingListOfProjectWorker(listOfProjectsWorker, queryForProjectWorker);
     }
 }
+
